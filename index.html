@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>德州扑克游戏 · 信息索引专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #f9e5d2 0%, #f4d5b5 30%, #ebc49f 70%, #e0b68c 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem 1.2rem 3rem;
+            line-height: 1.7;
+            color: #2d241b;
+        }
+
+        .page-card {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px -12px rgba(100, 60, 30, 0.25), 0 6px 16px rgba(0,0,0,0.06);
+            padding: 2.8rem 2.5rem 3.2rem;
+            transition: all 0.25s ease;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem 0.8rem 2rem; }
+            .page-card {
+                padding: 2rem 1.2rem 2.4rem;
+                border-radius: 32px 32px 24px 24px;
+            }
+        }
+
+        /* 横幅 hero 区 */
+        .hero-area {
+            text-align: center;
+            padding: 0.8rem 0 1.8rem;
+            border-bottom: 2px dashed #dcb694;
+            margin-bottom: 2.2rem;
+        }
+
+        .hero-area h1 {
+            font-size: 2.6rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #3f281c;
+            background: linear-gradient(to right, #7b4f2e, #aa7c54);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.15rem;
+            color: #6b4f38;
+            background: #f4e4d4;
+            display: inline-block;
+            padding: 0.3rem 1.6rem;
+            border-radius: 60px;
+            letter-spacing: 0.4px;
+            margin-top: 0.3rem;
+            font-weight: 400;
+            box-shadow: inset 0 1px 3px rgba(220, 160, 110, 0.2);
+        }
+
+        /* 背景说明小卡片 */
+        .context-block {
+            background: #fffaf3;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.4rem;
+            box-shadow: 0 4px 10px rgba(160, 110, 60, 0.08);
+            border: 1px solid #eedbcb;
+        }
+
+        .context-block h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #4f3422;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+        }
+
+        .context-block h2::before {
+            content: "📋";
+            font-size: 1.5rem;
+            opacity: 0.85;
+        }
+
+        .context-block p {
+            max-width: 75ch;
+            text-indent: 1.6em;
+        }
+
+        /* 三段自然介绍 —— 使用卡片网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin: 2.4rem 0 1.8rem;
+        }
+
+        .feature-card {
+            background: #fefcf8;
+            border-radius: 28px;
+            padding: 1.8rem 1.4rem 1.6rem;
+            box-shadow: 0 4px 12px rgba(100, 60, 30, 0.06);
+            border: 1px solid #ecdac9;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -6px rgba(140, 90, 50, 0.12);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 520;
+            color: #3f281c;
+            margin-bottom: 0.6rem;
+            border-left: 5px solid #dbaa7a;
+            padding-left: 0.75rem;
+        }
+
+        .feature-card p {
+            font-size: 0.98rem;
+            color: #3d2f23;
+            text-indent: 1.4em;
+        }
+
+        @media (max-width: 780px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .feature-card {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+
+        /* 附加 FAQ 摘要 —— 紧凑风格 */
+        .faq-summary {
+            background: #f6ede4;
+            border-radius: 28px;
+            padding: 1.6rem 2rem;
+            margin: 1.2rem 0 2.2rem;
+            border-left: 6px solid #ca9f79;
+        }
+
+        .faq-summary h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #4f3422;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-summary h3::before {
+            content: "❓";
+            font-size: 1.3rem;
+        }
+
+        .faq-summary ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+        }
+
+        .faq-summary li {
+            flex: 1 0 180px;
+            background: white;
+            border-radius: 60px;
+            padding: 0.3rem 1rem 0.3rem 1.8rem;
+            font-size: 0.95rem;
+            color: #2d241b;
+            position: relative;
+        }
+
+        .faq-summary li::before {
+            content: "▹";
+            position: absolute;
+            left: 0.6rem;
+            color: #b28051;
+        }
+
+        /* 页尾访问提示 */
+        .footer-note {
+            margin-top: 2.6rem;
+            text-align: center;
+            padding-top: 1.6rem;
+            border-top: 2px dashed #dcb694;
+        }
+
+        .footer-note p {
+            font-size: 1.08rem;
+            color: #3d2b1d;
+            background: #f6eee7;
+            display: inline-block;
+            padding: 0.5rem 2.2rem;
+            border-radius: 60px;
+            box-shadow: 0 2px 6px rgba(140, 90, 50, 0.06);
+        }
+
+        .footer-note a {
+            color: #7a512f;
+            background: #f2e3d7;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.1rem 0.8rem;
+            border-radius: 40px;
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid #dbb692;
+            white-space: nowrap;
+        }
+
+        .footer-note a:hover {
+            background: #dbb692;
+            color: #281c14;
+            border-color: #b57f55;
+        }
+
+        .subtle-meta {
+            margin-top: 1.2rem;
+            color: #856d57;
+            font-size: 0.85rem;
+            opacity: 0.65;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2cebc;
+            margin: 2rem 0 0.6rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-card">
+
+    <!-- 首页横幅 -->
+    <div class="hero-area">
+        <h1>德州扑克 · 资料索引</h1>
+        <div class="hero-tagline">整理 · 筛选 · 简明档案</div>
+    </div>
+
+    <!-- 背景说明 -->
+    <div class="context-block">
+        <h2>从文本到牌桌</h2>
+        <p>作为一个长期存在的策略类牌戏，德州扑克游戏承载了大量策略笔记、概率表格与历史牌谱。这个专题页面并非攻略站，而是一份经过筛选的资料索引，帮助有兴趣的读者快速定位需要的信息源。所有整理内容均以公开资料为基础，不涉及任何私人数据或未授权内容。</p>
+        <p>若你需要直接进入具体的规则解释、术语对照或牌局场景分析，下方卡片列出了几类常见的信息板块。它们各自对应不同的查阅习惯：有人偏爱概率速查，有人则更关注起手牌分类与位置策略。</p>
+    </div>
+
+    <!-- 三段自然介绍（杂志风格卡片） -->
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>基础框架</h3>
+            <p>手牌组合、公共牌结构、行动轮次与下注规则，构成德州扑克游戏最稳定的四根支柱。理解这些底层逻辑，比记住大量口诀更重要。许多新手误以为复杂策略优先，其实最先需要梳理的是位置顺序与底池计算。</p>
+        </div>
+        <div class="feature-card">
+            <h3>概率与范围</h3>
+            <p>从翻前胜率表到听牌概率，数字能帮助决策但不应代替阅读。不同场景下底池赔率与隐含赔率的权衡，属于中等难度的分析工具。建议结合具体牌例来理解这些数字，而非孤立记忆。</p>
+        </div>
+        <div class="feature-card">
+            <h3>场景与调整</h3>
+            <p>锦标赛与现金桌的节奏完全不同，短码与深码的策略也随之变化。此外，对手类型、牌桌动态、下注尺度这些变量，很难用固定公式概括。保留一份灵活的策略笔记，比追求标准化打法更有实际帮助。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要式区块 -->
+    <div class="faq-summary">
+        <h3>常见信息索引</h3>
+        <ul>
+            <li>标准手牌等级与起手表</li>
+            <li>位置缩写与行动顺序</li>
+            <li>翻牌圈听牌概率参考</li>
+            <li>锦标赛盲注结构说明</li>
+            <li>常见术语对照（中英）</li>
+        </ul>
+    </div>
+
+    <!-- 页尾访问提示 — 自然嵌入链接 -->
+    <div class="footer-note">
+        <p>
+            在整理过程中，我们参考了
+            <a href="https://cn-texaspokergame.com">德州扑克游戏</a>
+            的基础规则框架，并结合多份公开牌例与策略笔记进行了交叉比对。
+        </p>
+        <div class="subtle-meta">资料版本 · 2025.06 · 持续修订</div>
+    </div>
+
+    <!-- 微装饰（无实际内容） -->
+    <hr>
+    <div style="text-align: right; font-size: 0.8rem; color: #a58872; opacity: 0.5; letter-spacing: 1px;">
+        ── 索引页 · 内容定期刷新 ──
+    </div>
+</div>
+</body>
+</html>

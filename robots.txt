@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://karry7kit.github.io/cn-texaspokergame-com-2/sitemap.xml
